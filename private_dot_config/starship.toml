@@ -1,0 +1,18 @@
+# Replace the "❯" symbol in the prompt with "➜"
+[character]      # The name of the module we are configuring is "character"
+success_symbol = "➜"     # The "symbol" segment is being set to "➜"
+
+[kubernetes]
+symbol = "⛵ "
+style = "bold blue"
+disabled = false
+
+[aws]
+style = "bold blue"
+
+[aws.region_aliases]
+eu-west-1 = "Ireland"
+
+[jobs]
+symbol = "+ "
+threshold = 4
