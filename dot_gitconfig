@@ -1,0 +1,12 @@
+[user]
+	name = Olivier Robert
+	email = robby57@gmail.com
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	co = checkout
+	st = status -s
+[credential]
+	helper = !aws codecommit credential-helper $@
+	UseHttpPath = true
+[core]
+	excludesFile = ~/.gitignore
