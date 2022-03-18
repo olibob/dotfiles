@@ -1,11 +1,19 @@
 # Replace the "❯" symbol in the prompt with "➜"
 [character]      # The name of the module we are configuring is "character"
 success_symbol = "➜"     # The "symbol" segment is being set to "➜"
+error_symbol = "✗"
 
 [kubernetes]
-symbol = "⛵ "
-style = "bold blue"
+format = 'on [⛵ $context](blue) '
 disabled = false
+
+[docker_context]
+symbol = "🐋 "
+disabled = false
+
+[python]
+symbol = "  "
+pyenv_version_name = true
 
 [aws]
 style = "bold blue"
@@ -14,5 +22,5 @@ style = "bold blue"
 eu-west-1 = "Ireland"
 
 [jobs]
-symbol = "+ "
-threshold = 4
+symbol_threshold = "+ "
+number_threshold = 4
