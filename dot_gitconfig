@@ -1,19 +1,23 @@
+[include]
+    path = /home/bob/.config/git/themes.gitconfig
 [core]
     pager = delta
 
 [interactive]
-    diffFilter = delta --color-only
+    diffFilter = delta --color-only --features=interactive
 
 [delta]
+    navigate = true    # use n and N to move between diff sections
     side-by-side = true
-    navigate = true  # use n and N to move between diff sections
+    line-numbers = true
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+    features = gruvmax-fang
 
 [merge]
     conflictstyle = diff3
 
 [diff]
     colorMoved = default
-
 [user]
 	name = Olivier Robert
 	email = robby57@gmail.com
