@@ -4,18 +4,12 @@
 # Remove fish greeting
 set fish_greeting ""
 
-# Set dircolors
-# https://awesomeopensource.com/project/trapd00r/LS_COLORS
-# eval ( gdircolors --c-shell $HOME/.dircolors)
-
-# Colored man pages
-#set -Ux PAGER "most -s"
-
 # Aliases
 #########
-if type nvim > /dev/null 2>&1
- alias vim='nvim'
- alias vi='nvim'
+if type nvim >/dev/null 2>&1
+    alias vim='nvim'
+    alias vi='nvim'
+    alias v='nvim'
 end
 
 # tmux
@@ -26,40 +20,53 @@ alias tksv='tmux kill-server'
 alias tkss='tmux kill-session -t'
 
 # Editor
-set -Ux VISUAL nvim
-set -Ux EDITOR $VISUAL
+set -gx VISUAL nvim
+set -gx EDITOR $VISUAL
 
 # Stuff
 alias c='clear'
 alias ls='lsd'
 alias l='ls -1tr'
 alias ll='ls -ltrh'
+alias lt='ls --tree'
+alias v="nvim"
+
+# kubernetes
+alias k="kubectl"
 
 # zoxide
 zoxide init fish | source
 
-# Git
-alias gs='git status'
-alias gss='git status -s'
+# user space npm global packages
+set NPM_PACKAGES "$HOME/.npm-packages"
+set PATH $PATH $NPM_PACKAGES/bin
+set MANPATH $NPM_PACKAGES/share/man $MANPATH
 
-## Global Vars
-##############
+# Auto start SSH agent if not started already
+if test -z (pgrep ssh-agent)
+    eval (ssh-agent -c)
+    set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
+    set -Ux SSH_AGENT_PID $SSH_AGENT_PID
+    set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
+end
 
-# golang path
-set PATH $PATH /usr/local/go/bin
-set GOPATH $HOME/go
-set GOBIN $HOME/go/bin
-# Add go GOPATH/bin to the path
-set PATH $PATH $GOPATH/bin
+# Go Path addition
+set -gx GOPATH $HOME/go
+set -gx PATH $PATH $GOPATH/bin
 
-#yarn bin path
-#set PATH $PATH $HOME/.yarn/bin
+# Rust
+set -gx PATH $PATH "$HOME/.cargo/bin"
 
-# Set gruvbox theme
-# https://github.com/Jomik/fish-gruvbox
-# theme_gruvbox dark soft
+# krew
+set -gx PATH $PATH $HOME/.krew/bin
 
-# Starship activation
-# https://starship.rs/
+set -gx ZELLIJ_AUTO_ATTACH true
+
+if set -q ZELLIJ
+else
+    zellij -s bob
+end
+
+atuin init fish | source
 
 starship init fish | source
